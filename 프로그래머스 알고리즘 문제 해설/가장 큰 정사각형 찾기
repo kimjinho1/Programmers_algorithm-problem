@@ -1,0 +1,23 @@
+긴 시간동안 고민했지만 해결하지 못해서 답을 보았다.  
+아래와 코드와 같은 방식을 다이나믹 프로그래밍?이라고 부르는 것 같다.  
+처음에 나는 dp = [[0] * (col+1)] * (row+1) 라고 정의했었다.   
+얕은 복사라고 해야 될까. dp의 2번째 행의 열들이 바뀌면 다른 행들의 열도 다 같이 바뀌는   
+사태가 벌어졌다. 이것도 모르고 긴 시간동안 왜 안될까~ 거리면서 고민하고 있었다.  
+
+def solution(board):    
+    ans = 0;  
+    row = len(board)      
+    col = len(board[0])  
+    col_dp = [0] * (col+1)  
+    dp = []  
+    for i in range(row+1):  
+        dp.append(list(col_dp))  
+    for i in range(0, row):  
+        for j in range(0, col):   
+            if board[i][j] != 0:  
+                dp[i+1][j+1] = min(dp[i+1][j], dp[i][j+1], dp[i][j]) + 1  
+                ans = max(ans, dp[i+1][j+1])              
+    return ans*ans  
+
+print(solution([[0,1,1,1],[1,1,1,1],[1,1,1,1],[0,0,1,0]]))
+print(solution([[0,0,1,1],[1,1,1,1]]))

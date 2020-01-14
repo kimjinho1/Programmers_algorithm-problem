@@ -1,0 +1,23 @@
+나의 답  
+def solution(n):  
+    li = []  
+    for i in str(n):  
+        li.append(int(i))  
+    answer = sum(li)  
+    return answer  
+
+print(solution(123))
+print(solution(987))
+
+해설 답  
+def solution(n):  
+    answer = 0  
+    while n > 0:  
+        answer += n % 10  
+        n //= 10  
+    return answer  
+
+print(solution(123))
+print(solution(987))
+
+내가 좀 특이하게 푼 것 같다. 평범하게 풀어보자!
